@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up Form</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div class="container">
+        <div class="img-container">
+            <div class="img-overlay">
+                <img src="./odin-lined.png" alt="The Odin Project Logo " style="width: 65px; height:auto;">
+                <p>Sign-Up Form</p>
+            </div>
+            <footer>
+                <p>Created by <a href="https://theodinproject.com" target="_blank" rel="noopener noreferrer">The Odin Project</a></p>
+            </footer>
+        </div>
+        <form class="form-container">
+            <div class="head">
+                <p>This is not a real online service! You know you need something like this in your life to help you realize your deepest dreams.<br>Sign up now to get started.</br></p>
+                <p>You know you want to.</p>
+            </div>
+            <div class="user-info">
+                <legend>Let's do this!</legend>
+                <section>
+                    <label for="first-name">First Name
+                        <input type="text" id="first-name" name="first-name" required>
+                    </label>
+                    <label for="last-name">Last Name
+                        <input type="text" id="last-name" name="last-name" required>
+                    </label>
+                </section>
+                <section>
+                    <label for="email">Email
+                        <input type="email" id="email" name="email" required>
+                    </label>
+                    <label for="phone">Phone Number
+                        <input type="tel" id="phone" name="phone" required>
+                    </label>
+                </section>
+                <Section>
+                    <label for="password">Password
+                        <input type="password" id="password" name="password" required>
+                    </label>
+                    <label for="confirm-password">Confirm Password
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                    </label>
+                </Section>
+            </div>
+            <div class="form-footer">
+                <button type="submit">Create Account</button>
+                <button type="reset" class="reset">Reset</button>
+            </div>
+            <p>Already have an account? <a href="#">Log in</a></p>
+        </form>
+    </div>
+</body>
+</html>
