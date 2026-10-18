@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <style>
+        * {box-sizing: border-box;}
+
+        body {
+            background-color: aliceblue;
+            margin: 0;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .container {
+            width: 40vw;
+            height: 40vh;
+            border: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+        }
+
+        .cell {
+            background-color: rgb(146, 151, 156);
+            border-radius: 50px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+            overflow-wrap: anywhere;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+    <script>
+        const container = document.querySelector('.container')
+
+        function createElement(type, id) {
+            this.el = document.createElement(type)
+            this.el.classList.add('cell')
+            this.el.id = id
+            container.appendChild(this.el)
+        }
+
+        function createCells() {
+            for (let i = 1; i <= 9; i++) {
+                createElement('div', i)
+            }
+        }
+
+        createCells();
+    </script>
+</body>
+</html>
