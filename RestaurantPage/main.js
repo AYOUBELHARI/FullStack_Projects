@@ -1,3 +1,4 @@
+import restaurantImage from "./restaurant.svg";
 export const content = document.querySelector('#content');
 export const navButtons = document.querySelectorAll('nav button');
  
@@ -14,7 +15,7 @@ export const renderHome = () => {
     const section = el('section', 'hero');
  
     const img = el('img');
-    img.src = './restaurant.svg';
+    img.src = restaurantImage;
     img.alt = 'A steaming plate of food on a warm wooden table';
  
     const text = el('div');
