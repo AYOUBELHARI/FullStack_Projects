@@ -1,4 +1,4 @@
-export default function createTodoElement(todo) {
+function createTodoElement(todo) {
     const div = document.createElement('div')
     div.classList.add('todo-item')
     const title = document.createElement('h3')
@@ -14,4 +14,13 @@ export default function createTodoElement(todo) {
     div.appendChild(dueDate)
     div.appendChild(priority)
     return div
+}
+
+export default function renderTodoList(todos, container, emptyState) {
+    container.querySelectorAll('.todo-item').forEach(item => item.remove())
+    emptyState.style.display = todos.length === 0 ? 'flex' : 'none'
+    todos.forEach(todo => {
+        const todoElement = createTodoElement(todo)
+        container.appendChild(todoElement)
+    })
 }

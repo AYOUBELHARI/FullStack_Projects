@@ -1,7 +1,7 @@
 import "./style.css"
 import Todo from './modules/todo.js'
 import {todos, addTodo} from './modules/project.js'
-import createTodoElement from './modules/render.js'
+import renderList from './modules/render.js'
 
 const dialog = document.querySelector("#task-dialog");
 const mainAddTaskBtn = document.querySelector("#add-task-btn");
@@ -13,11 +13,9 @@ const todoListContainer = document.querySelector(".task-container");
 const emptyState = document.querySelector(".empty-state");
 
 mainAddTaskBtn.addEventListener("click", () => {
-    // Handle add task functionality
     dialog.showModal();
 });
 emptyStateAddTaskBtn.addEventListener("click", () => {
-    // Handle add task functionality
     dialog.showModal();
 });
 closeBtn.addEventListener("click", () => {
@@ -37,10 +35,7 @@ form.addEventListener("submit", (event) => {
     
     const newTodo = new Todo(title, description, dueDate, priority);
     addTodo(newTodo);
-    const todoElement = createTodoElement(newTodo);
-    // Append the new todo element to the DOM
-    todoListContainer.appendChild(todoElement);
-    emptyState.style.display = "none";
+    renderList(todos, todoListContainer, emptyState)
     form.reset();
     dialog.close();
 });
