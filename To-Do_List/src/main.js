@@ -1,7 +1,7 @@
 import "./style.css"
-import Todo from './modules/todo.js'
-import {todos, addTodo} from './modules/project.js'
-import renderList from './modules/render.js'
+import {Todo, updateTodo} from './modules/todo.js'
+import {renderTodoList, renderProjects} from './modules/render.js'
+import {projects, currentProject, addProject, selectProject} from './modules/project.js';
 
 const dialog = document.querySelector("#task-dialog");
 const mainAddTaskBtn = document.querySelector("#add-task-btn");
@@ -11,17 +11,34 @@ const cancelBtn = document.querySelector("#cancel-task-btn");
 const form = document.querySelector("#task-form");
 const todoListContainer = document.querySelector(".task-container");
 const emptyState = document.querySelector(".empty-state");
+const state = {
+    currentTodo: null
+}
+const projectListContainer = document.querySelector("#project-list");
+const personal = addProject('Personal');
+const work = addProject('Work');
+
+selectProject(personal.id);
+renderProjects(projects, projectListContainer)
+
+// console.log(projects);
+// console.log(currentProject.name); // Personal
+// console.log(currentProject.todos); // []
 
 mainAddTaskBtn.addEventListener("click", () => {
+    state.currentTodo = null;
     dialog.showModal();
 });
 emptyStateAddTaskBtn.addEventListener("click", () => {
+    state.currentTodo = null;
     dialog.showModal();
 });
 closeBtn.addEventListener("click", () => {
+    form.reset();
     dialog.close();
 });
 cancelBtn.addEventListener("click", () => {
+    form.reset();
     dialog.close();
 });
 form.addEventListener("submit", (event) => {
@@ -32,10 +49,15 @@ form.addEventListener("submit", (event) => {
     const description = formData.get("description");
     const dueDate = formData.get("dueDate");
     const priority = formData.get("priority");
-    
-    const newTodo = new Todo(title, description, dueDate, priority);
-    addTodo(newTodo);
-    renderList(todos, todoListContainer, emptyState)
+    if (!state.currentTodo) {
+        const newTodo = new Todo(title, description, dueDate, priority);
+        currentProject.todos.push(newTodo)
+    } else {
+        updateTodo(state.currentTodo, title, description, dueDate, priority);
+    }
+    renderTodoList(currentProject.todos, todoListContainer, emptyState, state)
+    state.currentTodo = null;
     form.reset();
     dialog.close();
+    // console.log(projects)
 });
