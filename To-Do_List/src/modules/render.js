@@ -33,12 +33,12 @@ const createTodoElement = (todo, todos, container, emptyState, state) => {
     editBtn.textContent = 'Edit'
     editBtn.classList.add('edit-btn')
     editBtn.addEventListener('click', () => {
-        const dialog = document.querySelector("#task-dialog");
-        const form = document.querySelector("#task-form");
-        const titleInput = form.querySelector("input[name='title']");
-        const descriptionInput = form.querySelector("textarea[name='description']");
-        const dueDateInput = form.querySelector("input[name='dueDate']");
-        const priorityInput = form.querySelector("select[name='priority']");
+        const taskDialog = document.querySelector("#task-dialog");
+        const taskForm = document.querySelector("#task-form");
+        const titleInput = taskForm.querySelector("input[name='title']");
+        const descriptionInput = taskForm.querySelector("textarea[name='description']");
+        const dueDateInput = taskForm.querySelector("input[name='dueDate']");
+        const priorityInput = taskForm.querySelector("select[name='priority']");
         
         titleInput.value = todo.title;
         descriptionInput.value = todo.description;
@@ -46,7 +46,7 @@ const createTodoElement = (todo, todos, container, emptyState, state) => {
         priorityInput.value = todo.priority;
         
         state.currentTodo = todo;
-        dialog.showModal();
+        taskDialog.showModal();
     })
     div.appendChild(checkbox)
     div.appendChild(title)
@@ -59,11 +59,21 @@ const createTodoElement = (todo, todos, container, emptyState, state) => {
 }
 
 const createProjectElement = (project) => {
+    const div = document.createElement('div')
+    div.classList.add('project-item')
     const btn = document.createElement('button')
     btn.classList.add('nav-link')
     btn.textContent = project.name
     btn.setAttribute('data-project-id', project.id)
-    return btn
+    const deleteBtn = document.createElement('button')
+    deleteBtn.type = 'button'
+    deleteBtn.textContent = 'x'
+    deleteBtn.classList.add('delete-project-btn')
+    deleteBtn.setAttribute('data-project-id', project.id)
+    deleteBtn.setAttribute('aria-label', `Delete ${project.name} project`)
+    div.appendChild(btn)
+    div.appendChild(deleteBtn)
+    return div
 }
 
 export function renderTodoList(todos, container, emptyState, state) {

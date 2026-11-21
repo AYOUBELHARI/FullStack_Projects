@@ -42,7 +42,7 @@
                 <div class="nav-section projects-section">
                     <div class="section-heading">
                         <p class="nav-section-title">MY PROJECTS</p>
-                        <button class="icon-button" type="button"
+                        <button class="icon-button add-project-trigger" type="button"
                             aria-label="Add project">+</button>
                     </div>
 
@@ -50,7 +50,7 @@
                         <!-- Projects will be rendered here by JavaScript -->
                     </div>
 
-                    <button class="add-project-button" type="button">
+                    <button class="add-project-button add-project-trigger" type="button">
                         <span>+</span>
                         Add Project
                     </button>
@@ -99,7 +99,7 @@
                         </p>
                     </div>
 
-                    <button class="add-task-button" id="add-task-btn" type="button">
+                    <button class="add-task-button add-task-btn" type="button">
                         <span>+</span>
                         Add Task
                     </button>
@@ -124,7 +124,7 @@
                                 Add a task to get started.
                             </p>
 
-                            <button class="empty-add-button" id="empty-add-task-btn" type="button">
+                            <button class="empty-add-button add-task-btn" type="button">
                                 + Create your first task
                             </button>
                         </div>
@@ -150,7 +150,7 @@
           </div>
 
           <button
-            class="dialog-close"
+            class="dialog-close closeTaskDialog"
             id="close-task-dialog"
             type="button"
             aria-label="Close dialog"
@@ -204,7 +204,7 @@
 
         <div class="dialog-actions">
           <button
-            class="btn btn-secondary"
+            class="btn btn-secondary closeTaskDialog"
             id="cancel-task-btn"
             type="button"
           >
@@ -213,6 +213,54 @@
 
           <button class="btn btn-primary" type="submit">
             Create Task
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <dialog class="project-dialog" id="project-dialog">
+      <form class="project-form" id="project-form">
+        <div class="dialog-header">
+          <div>
+            <p class="eyebrow">YOUR WORKSPACE</p>
+            <h2>Create a project</h2>
+            <p class="dialog-description">
+              Add a new project to your Inbox.
+            </p>
+          </div>
+
+          <button
+            class="dialog-close closeProjectDialog"
+            id="close-project-dialog"
+            type="button"
+            aria-label="Close dialog"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="form-group">
+          <label for="project-name">Name</label>
+          <input
+            type="text"
+            id="project-name"
+            name="projectName"
+            placeholder="e.g. Personal"
+            required
+            maxlength="100"
+          />
+        </div>
+        
+        <div class="dialog-actions">
+          <button
+            class="btn btn-secondary closeProjectDialog"
+            id="cancel-project-btn"
+            type="button"
+          >
+            Cancel
+          </button>
+
+          <button class="btn btn-primary" type="submit">
+            Create Project
           </button>
         </div>
       </form>
