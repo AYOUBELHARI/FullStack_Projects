@@ -9,9 +9,7 @@ const closeTaskBtns = document.querySelectorAll(".closeTaskDialog");
 const taskForm = document.querySelector("#task-form");
 const todoListContainer = document.querySelector(".task-container");
 const emptyState = document.querySelector(".empty-state");
-const state = {
-    currentTodo: null
-}
+const state = { currentTodo: null };
 const projectListContainer = document.querySelector("#project-list");
 const projectDialog = document.querySelector("#project-dialog")
 const addProjectBtn = document.querySelectorAll(".add-project-trigger")
@@ -24,12 +22,14 @@ addTaskBtn.forEach(btn => {
         taskDialog.showModal();
     });
 })
+
 closeTaskBtns.forEach(btn => {
     btn.addEventListener("click", () => {
         taskForm.reset();
         taskDialog.close();
     });
 })
+
 taskForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const formData = new FormData(taskForm);
@@ -52,23 +52,38 @@ taskForm.addEventListener("submit", (event) => {
 });
 
 projectListContainer.addEventListener("click", (event) => {
+    const deleteBtn = event.target.closest('.delete-project-btn')
+    if (deleteBtn) {
+        const projectId = deleteBtn.dataset.projectId
+        const deleted = deleteProject(projectId)
+        if (deleted) {
+            renderProjects(projects, projectListContainer)
+            selectProject(projectListContainer, currentProject.id)
+            renderTodoList(currentProject.todos, todoListContainer, emptyState, state)
+        }
+        return;
+    }
+    // Otherwise, handle normal project selection
     const projectBtn = event.target.closest(".nav-link");
     if (!projectBtn) return
     const projectId = projectBtn.dataset.projectId;
     selectProject(projectListContainer, projectId);
     renderTodoList(currentProject.todos, todoListContainer, emptyState, state);
 });
+
 addProjectBtn.forEach(btn => {
     btn.addEventListener("click", () => {
         projectDialog.showModal()
     })
 })
+
 closeProjectBtns.forEach(btn => {
     btn.addEventListener("click", () => {
         projectForm.reset()
         projectDialog.close()
     })
 })
+
 projectForm.addEventListener("submit", (event) => {
     event.preventDefault()
     const formData = new FormData(projectForm)
