@@ -1,7 +1,7 @@
 import "./style.css"
 import {Todo, updateTodo} from './modules/todo.js'
 import {renderTodoList, renderProjects} from './modules/render.js'
-import {projects, defaultProject, currentProject, addProject, selectProject, deleteProject} from './modules/project.js';
+import {projects, defaultProject, currentProject, addProject, selectProject, deleteProject, Project} from './modules/project.js';
 import {saveProjects} from './modules/storage.js'
 
 const taskDialog = document.querySelector("#task-dialog");
@@ -89,7 +89,24 @@ closeProjectBtns.forEach(btn => {
 projectForm.addEventListener("submit", (event) => {
     event.preventDefault()
     const formData = new FormData(projectForm)
-    const name = formData.get("projectName")
+    const name = formData.get("projectName").trim()
+    // Reject empty names
+    if (!name) {
+        alert("Project name cannot be empty.")
+        return
+    }
+
+    // Reject duplicate names (case-insensitive)
+    const alreadyExists = projects.some(project =>
+        project.name.toLowerCase() === name.toLowerCase()
+    )
+
+    if (alreadyExists) {
+        alert("A project with this name already exists.")
+        return
+    }
+
+    // Create the project    
     const newProject = addProject(name)
     renderProjects(projects, projectListContainer)
     selectProject(projectListContainer, newProject.id)
