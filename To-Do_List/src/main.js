@@ -34,11 +34,26 @@ closeTaskBtns.forEach(btn => {
 taskForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const formData = new FormData(taskForm);
-    console.log([...formData.entries()]);
-    const title = formData.get("title");
-    const description = formData.get("description");
+    // console.log([...formData.entries()]);
+    const title = formData.get("title").trim();
+    const description = formData.get("description").trim();
     const dueDate = formData.get("dueDate");
     const priority = formData.get("priority");
+     // Validate title
+    if (!title) {
+        alert("Todo title cannot be empty.");
+        return;
+    }
+    // Validate due date
+    if (!dueDate) {
+        alert("Please select a due date.");
+        return;
+    }
+    // Validate priority
+    if (!priority) {
+        alert("Please select a priority.");
+        return;
+    }
     if (!state.currentTodo) {
         const newTodo = new Todo(title, description, dueDate, priority);
         currentProject.todos.push(newTodo)
