@@ -2,6 +2,7 @@ import "./style.css"
 import {Todo, updateTodo} from './modules/todo.js'
 import {renderTodoList, renderProjects} from './modules/render.js'
 import {projects, defaultProject, currentProject, addProject, selectProject, deleteProject} from './modules/project.js';
+import {saveProjects} from './modules/storage.js'
 
 const taskDialog = document.querySelector("#task-dialog");
 const addTaskBtn = document.querySelectorAll(".add-task-btn");
@@ -45,6 +46,7 @@ taskForm.addEventListener("submit", (event) => {
         updateTodo(state.currentTodo, title, description, dueDate, priority);
     }
     renderTodoList(currentProject.todos, todoListContainer, emptyState, state)
+    saveProjects(projects)
     state.currentTodo = null;
     taskForm.reset();
     taskDialog.close();
@@ -96,11 +98,9 @@ projectForm.addEventListener("submit", (event) => {
     projectDialog.close();
 })
 
-selectProject(projectListContainer, defaultProject.id)
-const personal = addProject('Personal');
-const work = addProject('Work');
+// console.log("Startup projects:", projects);
+// console.log("Startup project count:", projects.length);
+// console.log("Startup current project:", currentProject);
 renderProjects(projects, projectListContainer)
-
-// console.log(projects);
-// console.log(currentProject.name); // Personal
-// console.log(currentProject.todos); // []
+selectProject(projectListContainer, currentProject.id)
+renderTodoList(currentProject.todos, todoListContainer, emptyState, state)

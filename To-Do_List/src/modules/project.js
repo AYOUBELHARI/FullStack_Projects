@@ -1,5 +1,25 @@
-export const projects = [];
-export const defaultProject = addProject('Default')
+import {saveProjects, loadProjects} from './storage.js'
+
+export let projects = loadProjects() || []
+export let defaultProject = projects.find(project => project.name === 'Default')
+
+export function Project(name) {
+    this.name = name;
+    this.id = crypto.randomUUID();
+    this.todos = [];
+}
+
+export function addProject(name) {
+    const newProject = new Project(name)
+    projects.push(newProject)
+    saveProjects(projects)
+    return newProject
+}
+
+if (!defaultProject) {
+    defaultProject = addProject('Default')
+    saveProjects(projects)
+}
 export let currentProject = defaultProject
 
 const activate = (container, id) => {
@@ -12,17 +32,6 @@ const activate = (container, id) => {
     })
 }
 
-export function Project(name) {
-    this.name = name;
-    this.id = crypto.randomUUID();
-    this.todos = [];
-}
-
-export function addProject(name) {
-    const newProject = new Project(name)
-    projects.push(newProject)
-    return newProject
-}
 
 export function selectProject(container, id) {
     const index = projects.findIndex(p => p.id === id)
@@ -46,5 +55,6 @@ export function deleteProject(id) {
         currentProject = defaultProject;
     }
     projects.splice(index, 1);
+    saveProjects(projects);
     return true;
 }

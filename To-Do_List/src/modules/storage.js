@@ -3,8 +3,7 @@ export function saveProjects(projects) {
 }
 
 export function loadProjects() {
-    const data = localStorage.getItem("projects")
+    let data = localStorage.getItem("projects")
     if (!data) return null
-    data = JSON.parse(data)
-    return data
+    return JSON.parse(data)
 }

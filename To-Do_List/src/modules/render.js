@@ -1,3 +1,6 @@
+import {saveProjects} from "./storage.js"
+import {projects} from "./project.js"
+
 const createTodoElement = (todo, todos, container, emptyState, state) => {
     const div = document.createElement('div')
     div.classList.add('todo-item')
@@ -16,6 +19,7 @@ const createTodoElement = (todo, todos, container, emptyState, state) => {
     checkbox.addEventListener('change', () => {
         todo.completed = checkbox.checked
         div.classList.toggle('completed', todo.completed)
+        saveProjects(projects)
     })
     const deleteBtn = document.createElement('button')
     deleteBtn.type = 'button'
@@ -26,6 +30,7 @@ const createTodoElement = (todo, todos, container, emptyState, state) => {
         if (index !== -1) {
             todos.splice(index, 1)
             renderTodoList(todos, container, emptyState, state)
+            saveProjects(projects)
         }
     })
     const editBtn = document.createElement('button')
@@ -91,4 +96,6 @@ export function renderProjects(projects, container) {
         const projectElement = createProjectElement(project)
         container.appendChild(projectElement)
     })
+    // console.log("Rendered project elements:", container.children.length)
+    // console.log("Project list HTML:", container.innerHTML)
 }
