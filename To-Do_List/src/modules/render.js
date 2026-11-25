@@ -12,6 +12,7 @@ const createTodoElement = (todo, todos, container, emptyState, state) => {
     dueDate.textContent = `Due: ${todo.dueDate}`
     const priority = document.createElement('p')
     priority.textContent = `Priority: ${todo.priority}`
+    priority.classList.add(`priority`, `priority-${todo.priority.toLowerCase()}`)
     const checkbox = document.createElement('input')
     checkbox.type = 'checkbox'
     checkbox.checked = todo.completed
