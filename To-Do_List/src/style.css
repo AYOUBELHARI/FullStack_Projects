@@ -797,6 +797,22 @@ a {
         flex-direction: column;
         gap: 7px;
     }
+    .todo-item {
+        grid-template-columns: 20px minmax(0, 1fr) auto;
+        grid-template-areas:
+            "check title title"
+            ". description description"
+            ". due due"
+            ". priority priority"
+            ". delete edit";
+        gap: 10px;
+        margin: 12px;
+        padding: 16px;
+    }
+
+    .todo-item button {
+        justify-self: start;
+    }
 }
 
 @media (max-width: 380px) {
