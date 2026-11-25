@@ -486,6 +486,90 @@ a {
     border-radius: 10px;
 }
 
+.todo-item {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr) auto auto auto;
+    grid-template-areas:
+        "check title title title title"
+        ". description description description description"
+        ". due priority delete edit";
+
+    align-items: center;
+    gap: 12px;
+
+    margin: 16px;
+    padding: 20px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    transition: opacity 0.2s;
+}
+
+.todo-item input[type="checkbox"] {
+    grid-area: check;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.todo-item h3 {
+    grid-area: title;
+    font-size: 15px;
+    color: var(--text-primary);
+}
+
+.todo-item p:nth-of-type(1) {
+    grid-area: description;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.todo-item p:nth-of-type(2) {
+    grid-area: due;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.todo-item p:nth-of-type(3) {
+    grid-area: priority;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.todo-item button {
+    padding: 7px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    font-size: 12px;
+}
+
+.todo-item button:hover {
+    background: #f0efff;
+    border-color: var(--primary);
+}
+
+.todo-item .delete-btn {
+    grid-area: delete;
+}
+
+.todo-item .edit-btn {
+    grid-area: edit;
+}
+
+
+.todo-item.completed h3 {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+.todo-item.completed {
+    opacity: 0.65;
+}
+
+
 /* =========================
    7. Empty state
 ========================= */

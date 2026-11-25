@@ -83,7 +83,12 @@ const createProjectElement = (project) => {
 
 export function renderTodoList(todos, container, emptyState, state) {
     container.querySelectorAll('.todo-item').forEach(item => item.remove())
+    // Update task counter
+    const taskTotal = document.querySelector('.task-total')
+    taskTotal.textContent = `${todos.length} ${todos.length === 1 ? 'task' : 'tasks'}`
+    // Update empty state
     emptyState.style.display = todos.length === 0 ? 'flex' : 'none'
+    // Render todos
     todos.forEach(todo => {
         const todoElement = createTodoElement(todo, todos, container, emptyState, state)
         container.appendChild(todoElement)
