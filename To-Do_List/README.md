@@ -4,11 +4,17 @@ A responsive task management application built with JavaScript. TaskFlow helps u
 
 ## Live Demo
 
-[View TaskFlow](YOUR_LIVE_DEMO_URL)
+[View TaskFlow](https://ayoubelhari.github.io/ToDo_List/)
 
-## Preview
+## Screenshots
 
-![TaskFlow Desktop Preview](screenshots/desktop.png)
+### Desktop
+
+![TaskFlow Desktop](screenshots/Desktop.png)
+
+### Mobile
+
+![TaskFlow Mobile](screenshots/Mobile.png)
 
 ## Features
 
@@ -29,15 +35,32 @@ A responsive task management application built with JavaScript. TaskFlow helps u
 - Webpack
 - npm
 
-## Screenshots
+## Getting Started
 
-### Desktop
+To run TaskFlow locally:
 
-![TaskFlow Desktop](screenshots/desktop.png)
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/AYOUBELHARI/Javascript_Projects.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd Javascript_Projects/To-Do_List
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-### Mobile
+To generate a production build:
 
-![TaskFlow Mobile](screenshots/mobile.png)
+```bash
+npm run build
+```
 
 ## Technical Highlights
 
